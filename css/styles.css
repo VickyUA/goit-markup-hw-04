@@ -228,6 +228,21 @@ color: var(--pressed-state);
     width: 264px;
 }
 
+.benefits-icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 264px;
+    height: 112px;
+    border-radius: 4px;
+    background: var(--light);
+    margin-bottom: 8px;
+}
+
+.benefits-list-icon {
+
+}
+
 .benefits-item-title {
     font-weight: 500;
     font-size: 20px;
@@ -360,10 +375,12 @@ background-color: var(--light);
 padding: 16px 32px;
 border-radius: 4px;
 border: 1px solid var(--subtle-text);
+width: 168px;
+height: 88px;
 }
 
 .customer-list-icon {
-flex-shrink: 0;
+fill: var(--subtle-text);
 }
 
 /**

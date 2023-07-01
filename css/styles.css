@@ -644,12 +644,12 @@ margin-right: 120px;
 
 
 .footer-list-header {
-    color: var(--light);
     letter-spacing: 0.02em;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5;
     margin-bottom: 16px;
+    color: var(--white-background);
 }
 
 .socials-footer-list {
@@ -675,7 +675,7 @@ margin-right: 120px;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.social-link-footer:hover {
+.social-link-footer:hover, .social-link-footer:focus {
 background-color: var(--success)
 }
 
@@ -735,10 +735,6 @@ background-color: var(--success)
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal-icon:hover, .modal-icon:focus {
-    fill: #ffffff;
-}
-
 .modal-button {
     background-color: transparent;
     position: absolute;
@@ -761,4 +757,5 @@ background-color: var(--success)
 .modal-button:hover, .modal-button:focus {
     background-color: var(--pressed-state);
     border: none;
+    fill: #ffffff;
     }

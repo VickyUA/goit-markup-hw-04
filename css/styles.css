@@ -71,6 +71,7 @@ overflow: hidden;
 
 .header {
     border-bottom: 1px solid var(--accent);
+    box-shadow: зі значенням 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 
 .header-container {
@@ -133,7 +134,7 @@ overflow: hidden;
 
 .header-link.active::after {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     content: '';
     width: 100%;
@@ -141,6 +142,7 @@ overflow: hidden;
     display: block;
     background-color: var(--pressed-state);
     border-radius: 2px;
+
 }
 
 .header-link:hover {
@@ -365,7 +367,7 @@ background-color: var(--light);
 }
 
 .team-member {
-    padding: 32px 16px;
+    padding: 32px 0;
 }
 
 
@@ -391,11 +393,13 @@ background-color: var(--light);
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.social-link:hover {
+.social-link:hover, .social-link:focus {
 background-color: var(--pressed-state);
 }
 
-.social-link-icon {}
+.social-link-icon {
+    fill: var(--light)
+}
 
 /**
   |============================
@@ -429,25 +433,27 @@ background-color: var(--pressed-state);
 display: flex;
 width: 168px;
 height: 88px;
+color: #8E8F99;
 align-items: center;
 justify-content: center;
 border: 1px solid var(--subtle-text);
 border-radius: 4px;
-transition-property: fill;
+transition-property: border-color, color;
 transition-duration: 250ms;
 transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customer-list-icon {
-fill: var(--subtle-text);
+fill: currentColor;
 }
 
 .customers-links:hover .customer-list-icon {
 fill: var(--pressed-state);
 }
 
-.customers-links:hover {
+.customers-links:hover, .customers-links:focus {
     border-color: var(--pressed-state);
+    color: var(--pressed-state)
 }
 
 /**
@@ -471,6 +477,10 @@ fill: var(--pressed-state);
     justify-content: center;
     gap: 24px;
     margin-bottom: 72px;
+}
+
+.portfolio-btn-item {
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-btn {
@@ -505,7 +515,14 @@ fill: var(--pressed-state);
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 1px 0px rgba(0, 0, 0, 0.08), 0px 3px 1px 0px rgba(0, 0, 0, 0.10);
 }
 
-.portfolio-links {}
+.portfolio-links {
+    display: block;
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-links:hover {
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
 
 .portfolio-list {
     display: flex;
@@ -517,8 +534,7 @@ fill: var(--pressed-state);
 .portfolio-list-item {
     width: 360px;
     background-color: #FFFFFF;
-    position: relative;
-    overflow: hidden;
+
     transition-property: box-shadow;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -539,10 +555,10 @@ fill: var(--pressed-state);
     }
 
 .portfolio-text {
-font-size: 16px;
-line-height: 1.5;
-letter-spacing: 0.02em;
-color: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--text);
     }
 
 .portfolio-description {
@@ -551,17 +567,27 @@ color: var(--text);
     border-top: none;
 }
 
-.port-wrapper {}
-
-.portfolio-list-item:hover .overlay{
-transform: translateY(0);
+.port-wrapper {
+    position: relative;
+    overflow: hidden;
 }
 
-.overlay {
+.portfolio-links:hover .overlay-text {
+    transform: translateY(0);
+}
+
+.overlay-text {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    display: flex;
+    color: #F4F4FD;
+
     position: absolute;
     top: 0px;
     left: 0;
-    transform: translateY(422px);
+    transform: translateY(100%);
     background-color: #4D5AE5;
     display: flex;
     padding-top: 40px;
@@ -574,14 +600,6 @@ transform: translateY(0);
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.overlay-text {
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    color: var(--text);
-    display: flex;
-    color: #F4F4FD;
-}
 
 /**
   |============================
@@ -595,7 +613,11 @@ transform: translateY(0);
 
 .footer-wrapper {
     display: flex;
-    gap: 120px;
+    align-items: baseline;
+}
+
+.slogan {
+margin-right: 120px;
 }
 
 .footer-logo {
@@ -620,29 +642,31 @@ transform: translateY(0);
     width: 264px;
 }
 
+
+
 .footer-list-header {
     color: var(--light);
     letter-spacing: 0.02em;
     font-size: 16px;
     font-weight: 500;
-    line-height: 24px;
-    display: flex;
+    line-height: 1.5;
     margin-bottom: 16px;
 }
 
 .socials-footer-list {
     display: flex;
     gap: 16px;
-    align-items: center;
-    justify-content: center;
 }
 
-.social-item-footer {}
+.social-item-footer {
+    width: 40px;
+    height: 40px;
+}
 
 .social-link-footer {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -656,9 +680,13 @@ transform: translateY(0);
 background-color: var(--success)
 }
 
-.socials {}
+.socials {
 
-.social-icon-footer {}
+}
+
+.social-icon-footer {
+    fill: var(--light)
+}
 
 /**
   |============================
@@ -696,7 +724,7 @@ background-color: var(--success)
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 408px;
-    height: 584px; 
+    min-height: 584px; 
     border-radius: 4px;
     box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.20), 0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
     background-color: #fcfcfc;
@@ -705,6 +733,11 @@ background-color: var(--success)
 
 .modal-icon {
     color: #2E2F42;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-icon:hover, .modal-icon:focus {
+    fill: #ffffff;
 }
 
 .modal-button {
@@ -721,6 +754,12 @@ background-color: var(--success)
     justify-content: center;
     align-items: center;
     background: var(--accent);
-    border-radius: 24px;
+    border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.10);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+.modal-button:hover, .modal-button:focus {
+    background-color: var(--pressed-state);
+    border: none;
     }
